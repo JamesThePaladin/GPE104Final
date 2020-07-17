@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (player == null) //if player slot is empty
+        {
+            player = GameObject.FindWithTag("Player"); //fill it with player
+        }
     }
 
     void FixedUpdate() 
@@ -87,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         Convert.ToDouble(sceneTime);
         //update time
-        sceneTime += Math.Round(Time.deltaTime, 2);
+        sceneTime += Time.deltaTime;
         //update display
         timeText.text = " " + sceneTime;
     }

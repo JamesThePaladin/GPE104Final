@@ -16,6 +16,7 @@ TagManager:
   - Enemy
   - WalkerDeathSound
   - HUD
+  - SnailDeathSound
   layers:
   - Default
   - TransparentFX

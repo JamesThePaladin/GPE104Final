@@ -28,8 +28,10 @@ public class Pawn : MonoBehaviour
     [Header("Grounding")]
     //for grounding distance
     public float groundingDistance;
+    //to hold what the ground is
+    public LayerMask groundLayer;
 
-    void Start()
+    protected virtual void Start()
     {
         //get components of game object
         anim = GetComponent<Animator>();
@@ -37,7 +39,7 @@ public class Pawn : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         IsGrounded();
     }
@@ -50,15 +52,15 @@ public class Pawn : MonoBehaviour
 
     public void Jump() 
     {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
     }
 
     //bool for checking if player is grounded
     public bool IsGrounded()
     {
         //check if we are grounded
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, groundingDistance);
-        if (hitInfo.collider.CompareTag("Ground"))
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector2.down, groundingDistance, groundLayer);
+        if (hitInfo.collider != null)
         {
             currentJumps = maxJumps;
             return true;

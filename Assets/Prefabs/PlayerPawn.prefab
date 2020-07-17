@@ -143,6 +143,9 @@ MonoBehaviour:
   maxJumps: 1
   currentJumps: 1
   groundingDistance: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
   animXDeadZone: 0
   animYDeadZone: 0
 --- !u!95 &1463824340

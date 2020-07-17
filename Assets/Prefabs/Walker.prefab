@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 8287804925610173674}
   - component: {fileID: 8287804925610173678}
   - component: {fileID: 8287804925610173679}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3864940940022859158, guid: 16290d3363e8a944294f40d34c41f893,
+  m_Sprite: {fileID: 2683871473611574719, guid: 16290d3363e8a944294f40d34c41f893,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -473,7 +473,10 @@ MonoBehaviour:
   maxJumps: 0
   currentJumps: 0
   groundingDistance: 0.2
-  deathSound: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  deathSound: {fileID: 742563078}
   explosion: {fileID: 0}
   groundDetect: {fileID: 8287804924930788398}
   detectDistance: 0.5

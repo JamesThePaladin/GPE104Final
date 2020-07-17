@@ -1,20 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class WalkerPawn : Pawn
+public class SnailPawn : Pawn
 {
-    /// <summary>
-    /// Walker Ground Detection is courtesy of Blackthornprod
-    /// I have adapted it to work with my controller
-    /// </summary>
-    ///
-    
     //to hold Walker's death sound
     public AudioSource deathSound;
-    //to hold the walker's death explosion
-    public GameObject explosion;
     //transform for ground detection empty
     public Transform groundDetect;
     //float for the distance of the detection raycast
@@ -22,19 +13,16 @@ public class WalkerPawn : Pawn
     //float for how much bounce the player gets for jumping on the enemy
     public float bounce;
     //bool for moving right
-    public bool movingRight = true;
+    public bool movingRight = false;
     //int for number of points walkers are worth
     public int points;
-
     // Start is called before the first frame update
     protected override void Start()
     {
         //get components of game object
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        base.Start();
         //get sounds
-        deathSound = GameObject.FindWithTag("WalkerDeathSound").GetComponent<AudioSource>();
+        deathSound = GameObject.FindWithTag("SnailDeathSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,7 +32,7 @@ public class WalkerPawn : Pawn
     }
     public void GroundDetection()
     {
-        RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance,groundLayer);
+        RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance, groundLayer);
         if (detectInfo.collider == false)
         {
             if (movingRight == true)
@@ -67,7 +55,7 @@ public class WalkerPawn : Pawn
         {
             GameManager.instance.SendMessage("ScorePoints", points);
             //make an explosion
-            anim.Play("DeathAnim");
+            anim.Play("SnailDeathAnim");
             //play death sound
             deathSound.Play();
             //push player up
