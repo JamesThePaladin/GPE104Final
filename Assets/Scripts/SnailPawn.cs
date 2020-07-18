@@ -6,14 +6,8 @@ public class SnailPawn : Pawn
 {
     //to hold Walker's death sound
     public AudioSource deathSound;
-    //transform for ground detection empty
-    public Transform groundDetect;
-    //float for the distance of the detection raycast
-    public float detectDistance;
     //float for how much bounce the player gets for jumping on the enemy
     public float bounce;
-    //bool for moving right
-    public bool movingRight = false;
     //int for number of points walkers are worth
     public int points;
     // Start is called before the first frame update
@@ -26,27 +20,27 @@ public class SnailPawn : Pawn
     }
 
     // Update is called once per frame
-    protected override void Update()
-    {
-        GroundDetection();
-    }
-    public void GroundDetection()
-    {
-        RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance, groundLayer);
-        if (detectInfo.collider == false)
-        {
-            if (movingRight == true)
-            {
-                transform.eulerAngles = new Vector3(0, -180, 0);
-                movingRight = false;
-            }
-            else
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                movingRight = true;
-            }
-        }
-    }
+    //protected override void Update()
+    //{
+    //    GroundDetection();
+    //}
+    //public void GroundDetection()
+    //{
+    //    RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance, groundLayer);
+    //    if (detectInfo.collider == false)
+    //    {
+    //        if (movingRight == true)
+    //        {
+    //            transform.eulerAngles = new Vector3(0, -180, 0);
+    //            movingRight = false;
+    //        }
+    //        else
+    //        {
+    //            transform.eulerAngles = new Vector3(0, 0, 0);
+    //            movingRight = true;
+    //        }
+    //    }
+    //}
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -55,7 +49,7 @@ public class SnailPawn : Pawn
         {
             GameManager.instance.SendMessage("ScorePoints", points);
             //make an explosion
-            anim.Play("SnailDeathAnim");
+            anim.Play("SnailHit");
             //play death sound
             deathSound.Play();
             //push player up

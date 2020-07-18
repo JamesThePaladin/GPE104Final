@@ -13,8 +13,6 @@ public class WalkerPawn : Pawn
     
     //to hold Walker's death sound
     public AudioSource deathSound;
-    //to hold the walker's death explosion
-    public GameObject explosion;
     //transform for ground detection empty
     public Transform groundDetect;
     //float for the distance of the detection raycast
@@ -30,9 +28,7 @@ public class WalkerPawn : Pawn
     protected override void Start()
     {
         //get components of game object
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        base.Start();
         //get sounds
         deathSound = GameObject.FindWithTag("WalkerDeathSound").GetComponent<AudioSource>();
     }
