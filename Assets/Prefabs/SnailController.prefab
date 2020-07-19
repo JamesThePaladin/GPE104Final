@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5123619505204177771
+--- !u!1 &888363096577285366
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5123619505204177773}
-  - component: {fileID: 5123619505204177772}
+  - component: {fileID: 888363096577285367}
+  - component: {fileID: 888363096577285360}
   m_Layer: 0
-  m_Name: BossController
+  m_Name: SnailController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5123619505204177773
+--- !u!4 &888363096577285367
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5123619505204177771}
+  m_GameObject: {fileID: 888363096577285366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8753183, y: 0.18928397, z: -17.496948}
+  m_LocalPosition: {x: 1.5007591, y: 1.0374453, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5123619505204177772
+--- !u!114 &888363096577285360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5123619505204177771}
+  m_GameObject: {fileID: 888363096577285366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0e17a44e147f3b4f9349127b6117337, type: 3}
+  m_Script: {fileID: 11500000, guid: a91470b1b365d6240b7244a35852efa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
-  walkerPrefab: {fileID: 8287804925610173673, guid: a5e7c727267a69146813f8bb894cf14f,
-    type: 3}
-  walkerControllerPrefab: {fileID: 7247765982490145431, guid: cc215bf61f0e6be4196e3691c107504c,
-    type: 3}
-  walkerSpawner: {fileID: 0}
-  aggroDistance: 10
-  stoppingDistance: 0.3
-  phaseChange1: 2
-  phaseChange2: 1
-  phaseChange3: 0
-  points: 0
-  currentState: 0

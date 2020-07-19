@@ -12,18 +12,13 @@ public class PlayerHUD : MonoBehaviour
     {
         if (playerHUD == null)
         {
-            playerHUD = GameObject.FindWithTag("HUD");
+            playerHUD = this.gameObject;
+            DontDestroyOnLoad(this.gameObject); //keep this instance of game manager when loading new scenes
         }
         else
         {
-            Destroy(this.gameObject); // delete the new game manager attempting to store itself, there can only be one.
+            Destroy(this.gameObject); // delete the new UI attempting to store itself, there can only be one.
             Debug.Log("Warning: A second player HUD was detected and destrtoyed"); // display message in the console to inform of its demise
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

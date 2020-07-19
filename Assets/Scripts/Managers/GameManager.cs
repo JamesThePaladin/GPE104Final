@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         //if lives are less than or equal to 0 game over
         if (lives <= 0)
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("GameOver");
         }
     }
 

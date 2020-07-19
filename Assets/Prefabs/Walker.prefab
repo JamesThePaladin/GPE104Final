@@ -418,7 +418,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010671474, y: 0.20143822}
+  m_Offset: {x: 0.011079915, y: 0.20062134}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -429,7 +429,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08158569, y: 0.0060254335}
+  m_Size: {x: 0.113445014, y: 0.009293079}
   m_EdgeRadius: 0
 --- !u!50 &8287804925610173674
 Rigidbody2D:
@@ -477,7 +477,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   deathSound: {fileID: 742563078}
-  explosion: {fileID: 0}
   groundDetect: {fileID: 8287804924930788398}
   detectDistance: 0.5
   bounce: 2500

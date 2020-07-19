@@ -17,6 +17,7 @@ TagManager:
   - WalkerDeathSound
   - HUD
   - SnailDeathSound
+  - Boss
   layers:
   - Default
   - TransparentFX
