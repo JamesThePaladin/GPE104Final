@@ -12,7 +12,6 @@ public class VictoryZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Victory!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }

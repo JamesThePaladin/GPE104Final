@@ -16,7 +16,6 @@ public class MainMenu : MonoBehaviour
     //for quit button on start menu, closes the app
     public void QuitGame() 
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
 }

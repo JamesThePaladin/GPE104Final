@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class WalkerPawn : Pawn
 {
-    /// <summary>
-    /// Walker Ground Detection is courtesy of Blackthornprod
-    /// I have adapted it to work with my controller
-    /// </summary>
-    ///
-    
     //to hold Walker's death sound
     public AudioSource deathSound;
     //transform for ground detection empty
@@ -38,19 +32,31 @@ public class WalkerPawn : Pawn
     {
         GroundDetection();
     }
+
+    /// <summary>
+    /// Walker Ground Detection is courtesy of Blackthornprod
+    /// I have adapted it to work with my controller
+    /// </summary>
     public void GroundDetection()
     {
-        RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance,groundLayer);
+        //send a raycast down by a set amount starting at the ground detect empty on the ground layer
+        RaycastHit2D detectInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, detectDistance, groundLayer);
+        //if you dont detect anything
         if (detectInfo.collider == false)
         {
+            //and if moving right is true
             if (movingRight == true)
             {
+                //flip -180 degrees
                 transform.eulerAngles = new Vector3(0, -180, 0);
+                //set moving right to false
                 movingRight = false;
             }
             else
             {
+                //flip 180 degrees
                 transform.eulerAngles = new Vector3(0, 0, 0);
+                //and set moving right to true
                 movingRight = true;
             }
         }

@@ -30,9 +30,6 @@ public class GameManager : MonoBehaviour
     //to hold the time in current scene
     public Text timeText;
 
-    //for our fade screen effect
-    public GameObject fadeScreen;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +49,7 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindWithTag("Player"); //fill it with player
         }
 
+        //initialize UI text displays and game stats
         score = 0;
         scoreText.text = " x" + score;
         lives = 3;
@@ -72,6 +70,24 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate() 
     {
+        //to find the text fields when the UI is destroyed on a continue.
+        if (scoreText == null) 
+        {
+            scoreText = GameObject.FindWithTag("ScoreText").GetComponent<Text>();
+        }
+        if (livesText == null)
+        {
+            livesText = GameObject.FindWithTag("LivesText").GetComponent<Text>();
+        }
+        if (timeText == null)
+        {
+            timeText = GameObject.FindWithTag("TimeText").GetComponent<Text>();
+        }
+        if (coinText == null) 
+        {
+            coinText = GameObject.FindWithTag("CoinAmount").GetComponent<Text>();
+        }
+
         //update time display
         LevelTime();
     }

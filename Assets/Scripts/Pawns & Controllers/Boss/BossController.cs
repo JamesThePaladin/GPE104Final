@@ -226,10 +226,10 @@ public class BossController : Controller
 
     private void Death()
     {
-        //give player points
-        GameManager.instance.SendMessage("ScorePoints", points);
         //play death animation
         pawn.anim.Play("BossDie");
+        //give player points
+        GameManager.instance.SendMessage("ScorePoints", points);
         //destroy boss
         Destroy(GameObject.FindWithTag("Boss"));
     }

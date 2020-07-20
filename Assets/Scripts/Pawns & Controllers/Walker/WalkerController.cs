@@ -7,6 +7,7 @@ public class WalkerController : Controller
     // Update is called once per frame
     void Update()
     {
+        //if pawn is not null
         if (pawn != null)
         {
             //move pawn forward

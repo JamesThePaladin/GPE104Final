@@ -34,6 +34,13 @@ public class SnailPawn : Pawn
     {
         GroundDetection();
     }
+    /// <summary>
+    /// this is the same raycast script from Blackthornprod
+    /// I have adapted it here to shoot forward and detect walls
+    /// since walls are just on the ground layer anyway
+    /// this shoots out of the snail's face on an empty that has been created
+    /// this tells it when to rotate 180 degrees.
+    /// </summary>
     public void GroundDetection()
     {
         RaycastHit2D detectInfo = Physics2D.Raycast(wallDetect.position, -Vector2.right, detectDistance, groundLayer);

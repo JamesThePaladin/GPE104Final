@@ -18,6 +18,10 @@ TagManager:
   - HUD
   - SnailDeathSound
   - Boss
+  - CoinAmount
+  - ScoreText
+  - LivesText
+  - TimeText
   layers:
   - Default
   - TransparentFX
