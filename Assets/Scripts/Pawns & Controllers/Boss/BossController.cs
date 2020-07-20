@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class BossController : Controller
 {
-    //********************
-    //TO DO: Finish the boss phases and test boss health
-    //Also need to finish boss hitboxes
-    //*******************
-
     //for boss pawn
     protected new BossPawn pawn;
     //for walker instantiation
@@ -53,48 +48,86 @@ public class BossController : Controller
         switch(currentState) 
         {
             case BossStates.Idle:
+                Idle();
+                //if the distance between the boss and the player is less than aggro distance
                 if (Vector3.Distance(GameManager.instance.player.transform.position, pawn.transform.position) < aggroDistance)
                 {
+                    //change to Phase 1
                     ChangeStates(BossStates.Phase1);  
                 }
-                if (pawn.health < phaseChange2)
+                //if the bosse' health is low enough for Phase 2
+                if (pawn.health == phaseChange1)
                 {
+                    //change to Phase 2
+                    ChangeStates(BossStates.Phase2);
+                }
+                //if the boss's health is low enough for Phase 3
+                if (pawn.health == phaseChange2)
+                {
+                    //change to Phase 3
                     ChangeStates(BossStates.Phase3);
                 }
-                if (pawn.health < phaseChange3)
+                //if the boss's health is low enough to die
+                if (pawn.health == phaseChange3)
                 {
+                    //die
                     ChangeStates(BossStates.Death);
                 }
                 break;
             case BossStates.Phase1:
                 Phase1();
+                //if the distance between the boss and the player is greater than aggro distance
                 if (Vector3.Distance(GameManager.instance.player.transform.position, pawn.transform.position) > aggroDistance)
                 {
+                    //change back to idle
                     ChangeStates(BossStates.Idle);
                 }
+                //if the boss's health is low enough for Phase 2
                 if (pawn.health == phaseChange1) 
                 {
+                    //change to Phase 2
                     ChangeStates(BossStates.Phase2);
                 }
+                //if the boss's health is low enough for Phase 3
                 if (pawn.health == phaseChange2)
                 {
+                    //change to Phase 3   
                     ChangeStates(BossStates.Phase3);
+                }
+                //if the boss's health is low enough to die
+                if (pawn.health == phaseChange3)
+                {
+                    //die
+                    ChangeStates(BossStates.Death);
                 }
                 break;
             case BossStates.Phase2:
+                Phase2();
+                //if the distance between the boss and the player is greater than aggro distance
                 if (Vector3.Distance(GameManager.instance.player.transform.position, pawn.transform.position) > aggroDistance)
                 {
+                    //change back to idle
                     ChangeStates(BossStates.Idle);
                 }
+                //if the boss's health is low enough for Phase 3
                 if (pawn.health == phaseChange2)
                 {
+                    //change to Phase 3
                     ChangeStates(BossStates.Phase3);
+                }
+                //if the boss's health is low enough to die
+                if (pawn.health == phaseChange3)
+                {
+                    //die
+                    ChangeStates(BossStates.Death);
                 }
                 break;
             case BossStates.Phase3:
                 Phase3();
+                //if the boss's health is low enough to die
                 if (pawn.health == phaseChange3)
                 {
+                    //die
                     ChangeStates(BossStates.Death);
                 }
                 break;
@@ -104,9 +137,10 @@ public class BossController : Controller
         }
     }
 
+    //helper function for changing boss states
     private void ChangeStates(BossStates newState) 
     {
-       currentState = newState;
+        currentState = newState;
     }
 
     private void Idle() 
@@ -115,20 +149,29 @@ public class BossController : Controller
         //do nothing
     }
 
+    /// <summary>
+    /// Phase 1, boss moves towards the player until a certain point while jumping periodically
+    /// </summary>
     private void Phase1()
     {
+        //if the distance between you and the player is greater than your stopping distance
         if (Vector3.Distance(pawn.transform.position, GameManager.instance.player.transform.position) > stoppingDistance) 
         {
+            //get the direction the player is in
             Vector2 playerDirection = GameManager.instance.player.transform.position - pawn.transform.position;
+            //set y to zero to prevent movement on that axis
             playerDirection.y = 0;
+            //play your walk animation
             pawn.anim.Play("BossWalk");
+            //tell pawn to move in that direction
             pawn.Move(playerDirection);
+            //jump periodically only if grounded
             if (pawn.IsGrounded())
             {
                 StartCoroutine(WaitToJump());
             } 
         }
-
+        //jump function inside an IEnumerator to reduce jump frequency
         IEnumerator WaitToJump() 
         {
             yield return new WaitForSeconds(2f);
@@ -136,14 +179,23 @@ public class BossController : Controller
         }
     }
 
+    /// <summary>
+    /// Phase 2 is the same as Phase 1 except the boss jumps more frequently
+    /// </summary>
     private void Phase2()
     {
+        //if the distance between you and the player is greater than your stopping distance
         if (Vector3.Distance(pawn.transform.position, GameManager.instance.player.transform.position) > stoppingDistance)
         {
+            //get the direction the player is in
             Vector2 playerDirection = GameManager.instance.player.transform.position - pawn.transform.position;
+            //set y to zero to prevent movement on that axis
             playerDirection.y = 0;
+            //play walk aniamtion
             pawn.anim.Play("BossWalk");
+            //tell pawn to move in that direction
             pawn.Move(playerDirection);
+            //jump only if grounded
             if (pawn.IsGrounded())
             {
                 pawn.Jump();
@@ -153,12 +205,18 @@ public class BossController : Controller
 
     private void Phase3()
     {
+        //if the distance between you and the player is greater than your stopping distance
         if (Vector3.Distance(pawn.transform.position, GameManager.instance.player.transform.position) > stoppingDistance)
         {
+            //get the direction the player is in
             Vector2 playerDirection = GameManager.instance.player.transform.position - pawn.transform.position;
+            //set y to zero to prevent movement on that axis
             playerDirection.y = 0;
+            //play walk aniamtion
             pawn.anim.Play("BossWalk");
+            //tell pawn to move in that direction
             pawn.Move(playerDirection);
+            //jump only if grounded
             if (pawn.IsGrounded())
             {
                 pawn.Jump();
@@ -172,7 +230,6 @@ public class BossController : Controller
         GameManager.instance.SendMessage("ScorePoints", points);
         //play death animation
         pawn.anim.Play("BossDie");
-        //play death sound
         //destroy boss
         Destroy(GameObject.FindWithTag("Boss"));
     }

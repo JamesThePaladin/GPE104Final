@@ -13,6 +13,7 @@ public class BossPawn : Pawn
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            //boss hit animation
             anim.Play("BossHit");
             //push player up
             other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce);
